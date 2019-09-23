@@ -1,26 +1,26 @@
 #!/bin/bash
 
+ cd /var/www/project
+
 if [ "$1" = "symfony" ]; then
  TYPE=$2
- echo " "
- echo " "
- echo "Installing symfony $TYPE"
- echo " "
 
- # remove all current files in the www dir
- echo "Removing all files"
- rm -rf /var/www/project
- cd /var/www
+ # clear all
+ rm -rf ./*
 
  # install symfony
- echo "Installing symfony using the symfony installer...."
  if [ "$TYPE" = "website" ]; then
-  symfony new --full project
+  composer create-project symfony/website-skeleton project
  else
-  symfony new project
+  composer create-project symfony/skeleton project
  fi
 
-# Clear symfony cache
+ # move
+ mv ./project/* .
+ mv ./project/.env .
+ rm -rf project
+
+ # Clear symfony cache
  php bin/console cache:clear
 fi
 

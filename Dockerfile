@@ -10,7 +10,8 @@ ENV TZ=Europe/Amsterdam
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # install dependancies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update > /dev/null \
+    && apt-get install -y \
     zip wget curl unzip nano git php-pear \
     zlib1g-dev libicu-dev libc-dev \
     libpq-dev libxml2-dev gcc \
@@ -24,13 +25,14 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
 ENV APACHE_SERVER_NAME localhost
 
-RUN apt-get update \
+RUN apt-get update > /dev/null \
     && apt-get install -y apache2 > /dev/null
 
 EXPOSE 80
 
 RUN apt-get update && apt-get install -y \
     php7.3 \
+    php7.3-curl \
     php7.3-intl \
     php7.3-json \
     php7.3-mbstring \
