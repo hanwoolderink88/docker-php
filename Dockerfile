@@ -51,8 +51,8 @@ RUN echo "extension = apcu.so" > /etc/php/7.3/apache2/conf.d/apcu.ini
 RUN echo "extension = apcu.so" > /etc/php/7.3/cli/conf.d/apcu.ini
 
 #xdebug config
-COPY ./php/xdebug.ini /etc/php/7.3/apache2/conf.d/docker-php-ext-xdebug.ini
-COPY ./php/xdebug.ini /etc/php/7.3/cli/conf.d/docker-php-ext-xdebug.ini
+COPY ./php/xdebug.ini /etc/php/7.3/cli/conf.d/20-xdebug.ini
+COPY ./php/xdebug.ini /etc/php/7.3/cli/conf.d/20-xdebug.ini
 
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php \

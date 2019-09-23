@@ -1,24 +1,57 @@
 #!/bin/bash
-cd /var/www/project
 
 if [ "$1" = "symfony" ]; then
  TYPE=$2
- echo "Install symfony $TYPE"
+ echo " "
+ echo " "
+ echo "Installing symfony $TYPE"
+ echo " "
 
- # instal symfony
+ # remove all current files in the www dir
+ echo "Removing all files"
+ rm -rf /var/www/project
+ cd /var/www
+
+ # install symfony
+ echo "Installing symfony using the symfony installer...."
  if [ "$TYPE" = "website" ]; then
   symfony new --full project
  else
   symfony new project
  fi
 
- # move symfony
- rm -rf public
- mv -f project/* .
- rm -rf project
-
+# Clear symfony cache
  php bin/console cache:clear
 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
