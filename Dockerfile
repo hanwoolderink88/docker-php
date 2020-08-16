@@ -1,4 +1,4 @@
-FROM php:7.4.0-apache-buster
+FROM php:7.4.9-apache-buster
 RUN apt-get update
 RUN a2enmod rewrite && a2enmod headers
 
@@ -13,6 +13,7 @@ RUN apt-get install -y libxml2-dev
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install intl
 RUN docker-php-ext-install pdo_pgsql
+RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install soap
 RUN pecl install APCu
 RUN docker-php-ext-enable apcu
